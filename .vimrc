@@ -4,18 +4,18 @@ syntax   on
 
 set autoindent
 
-set mouse       = a
+set mouse=a
 
-set background  = dark
-set t_Co        = 256
+set background=dark
+set t_Co=256
 
-set colorcolumn = 80
-set tabstop     = 2
-set shiftwidth  = 2
+set colorcolumn=80
+set tabstop=2
+set shiftwidth=2
 set expandtab
 
 set nocompatible
-set omnifunc    = syntaxcomplete#Complete
+set omnifunc=syntaxcomplete#Complete
 
 " Folding is off for now, since it causes huge slowdowns on large
 " files/pastes.
