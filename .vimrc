@@ -35,18 +35,18 @@ nnoremap <silent> <F4> :set spell&<CR>
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'junegunn/vim-easy-align'                        " align on delimiters
-Plug 'junegunn/rainbow_parentheses.vim'               " parentheses marking
-Plug 'tpope/vim-fugitive'                             " git integration
-Plug 'tpope/vim-endwise'                              " add `end` in Ruby
-Plug 'vim-ruby/vim-ruby'                              " complete Ruby support
-Plug 'tomasr/molokai'                                 " color theme
+Plug 'junegunn/vim-easy-align'                             " align on delimiters
+Plug 'junegunn/rainbow_parentheses.vim'                    " parentheses marking
+Plug 'tpope/vim-fugitive'                                  " git integration
+Plug 'tpope/vim-endwise'                                   " add `end` in Ruby
+Plug 'vim-ruby/vim-ruby'                                   " complete Ruby support
+Plug 'tomasr/molokai'                                      " color theme
 Plug 'https://kylej@bitbucket.org/ns9tks/vim-autocomplpop' " IDE-like autocompletion
-Plug 'sukima/xmledit'                                 " XML/HTML/SGML editing
-Plug 'evanmiller/nginx-vim-syntax'                    " nginx config files
-Plug 'pangloss/vim-javascript'                        " javascript indentation/highlighting
-Plug 'noprompt/vim-yardoc'                            " syntax highlighting within comments
-Plug 'hallison/vim-ruby-sinatra'                      " sinatra syntax highlighting
+Plug 'sukima/xmledit'                                      " XML/HTML/SGML editing
+Plug 'evanmiller/nginx-vim-syntax'                         " nginx config files
+Plug 'pangloss/vim-javascript'                             " javascript indentation/highlighting
+Plug 'noprompt/vim-yardoc'                                 " syntax highlighting within comments
+Plug 'hallison/vim-ruby-sinatra'                           " sinatra syntax highlighting
 
 call plug#end()
 
