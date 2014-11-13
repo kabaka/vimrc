@@ -1,30 +1,30 @@
 filetype plugin on
 filetype indent on
-syntax on
+syntax   on
+
 set autoindent
-set mouse=a
 
-set background=dark
-set t_Co=256
+set mouse       = a
 
-set tabstop=2
-set shiftwidth=2
+set background  = dark
+set t_Co        = 256
+
+set colorcolumn = 80
+set tabstop     = 2
+set shiftwidth  = 2
 set expandtab
 
-set colorcolumn=80
-
 set nocompatible
+set omnifunc    = syntaxcomplete#Complete
 
-
-" Auto-completion
-set omnifunc=syntaxcomplete#Complete
-
-
+" Folding is off for now, since it causes huge slowdowns on large
+" files/pastes.
 "set foldmethod=syntax
 
-let g:colorizer_auto_filetype='css,html'
-let Tlist_Auto_Open = 1
-let Tlist_Exit_OnlyWindow = 1
+let g:colorizer_auto_filetype = 'css,html'
+let Tlist_Auto_Open           = 1
+let Tlist_Exit_OnlyWindow     = 1
+
 nnoremap <silent> <F8> :TlistToggle<CR>
 nnoremap <silent> <F3> :set spell spelllang=en_us<CR>
 nnoremap <silent> <F4> :set spell&<CR>
@@ -54,11 +54,14 @@ call plug#end()
 
 """""""""""""""""""""""
 
+" EasyAlign Configuration
 vmap <Enter> <Plug>(EasyAlign)
 vmap <Leader>a <Plug>(EasyAlign)
 
 colorscheme molokai
 
+
+" Return to the last location viewed when reopening a file.
 augroup JumpCursorOnEdit
  au!
  autocmd BufReadPost *
