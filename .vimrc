@@ -49,6 +49,7 @@ Plug 'evanmiller/nginx-vim-syntax'                         " nginx config files
 Plug 'pangloss/vim-javascript'                             " javascript indentation/highlighting
 Plug 'noprompt/vim-yardoc'                                 " syntax highlighting within comments
 Plug 'hallison/vim-ruby-sinatra'                           " sinatra syntax highlighting
+Plug 'chrisbra/Colorizer'                                  " highlight colors within text
 
 call plug#end()
 
