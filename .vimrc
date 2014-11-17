@@ -50,6 +50,7 @@ Plug 'pangloss/vim-javascript'                             " javascript indentat
 Plug 'noprompt/vim-yardoc'                                 " syntax highlighting within comments
 Plug 'hallison/vim-ruby-sinatra'                           " sinatra syntax highlighting
 Plug 'chrisbra/Colorizer'                                  " highlight colors within text
+Plug 'scrooloose/nerdcommenter'                            " commenting
 
 call plug#end()
 
