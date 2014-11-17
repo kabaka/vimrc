@@ -51,6 +51,7 @@ Plug 'noprompt/vim-yardoc'                                 " syntax highlighting
 Plug 'hallison/vim-ruby-sinatra'                           " sinatra syntax highlighting
 Plug 'chrisbra/Colorizer'                                  " highlight colors within text
 Plug 'scrooloose/nerdcommenter'                            " commenting
+Plug 'scrooloose/syntastic'                                " syntax checking
 
 call plug#end()
 
