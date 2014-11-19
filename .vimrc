@@ -21,6 +21,7 @@ set omnifunc=syntaxcomplete#Complete
 " files/pastes.
 "set foldmethod=syntax
 
+
 let g:colorizer_auto_filetype = 'css,html'
 let Tlist_Auto_Open           = 1
 let Tlist_Exit_OnlyWindow     = 1
@@ -51,6 +52,7 @@ Plug 'noprompt/vim-yardoc'                                 " syntax highlighting
 Plug 'hallison/vim-ruby-sinatra'                           " sinatra syntax highlighting
 Plug 'chrisbra/Colorizer'                                  " highlight colors within text
 Plug 'scrooloose/nerdcommenter'                            " commenting
+Plug 'scrooloose/nerdtree'                                 " file navigation
 Plug 'scrooloose/syntastic'                                " syntax checking
 
 call plug#end()
@@ -60,6 +62,17 @@ call plug#end()
 " EasyAlign Configuration
 vmap <Enter> <Plug>(EasyAlign)
 vmap <Leader>a <Plug>(EasyAlign)
+
+
+" NERD Tree Configuration
+
+"" Open NERDTree all the time.
+"autocmd vimenter * NERDTree
+
+"" Close NERDTree if everything else is closed
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+
 
 colorscheme molokai
 
