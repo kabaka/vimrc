@@ -54,6 +54,7 @@ Plug 'chrisbra/Colorizer'                                  " highlight colors wi
 Plug 'scrooloose/nerdcommenter'                            " commenting
 Plug 'scrooloose/nerdtree'                                 " file navigation
 Plug 'scrooloose/syntastic'                                " syntax checking
+Plug 'AndrewRadev/splitjoin.vim'                           " switch between single-line and multi-line blocks
 
 call plug#end()
 
