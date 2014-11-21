@@ -51,6 +51,7 @@ Plug 'pangloss/vim-javascript'                             " javascript indentat
 Plug 'noprompt/vim-yardoc'                                 " syntax highlighting within comments
 Plug 'hallison/vim-ruby-sinatra'                           " sinatra syntax highlighting
 Plug 'chrisbra/Colorizer'                                  " highlight colors within text
+Plug 'chrisbra/csv.vim'                                    " view CSV files as tables
 Plug 'scrooloose/nerdcommenter'                            " commenting
 Plug 'scrooloose/nerdtree'                                 " file navigation
 Plug 'scrooloose/syntastic'                                " syntax checking
