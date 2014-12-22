@@ -76,6 +76,11 @@ vmap <Leader>a <Plug>(EasyAlign)
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 
+" Rainbow Parentheses Configuration
+au VimEnter * RainbowParentheses
+
+" Remove parentheses on ctrl-P
+nmap <C-P> :s/(/ /g<CR>:s/)//g<CR>:nohl<CR>
 
 colorscheme molokai
 
