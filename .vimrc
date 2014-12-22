@@ -21,10 +21,12 @@ set omnifunc=syntaxcomplete#Complete
 " files/pastes.
 "set foldmethod=syntax
 
-
 let g:colorizer_auto_filetype = 'css,html'
 let Tlist_Auto_Open           = 1
 let Tlist_Exit_OnlyWindow     = 1
+
+set listchars = listchars=tab:>-,trail:.,extends:>,precedes:<,eol:$
+set list
 
 nnoremap <silent> <F8> :TlistToggle<CR>
 nnoremap <silent> <F3> :set spell spelllang=en_us<CR>
