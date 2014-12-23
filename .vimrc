@@ -86,6 +86,8 @@ nmap <C-P> :s/(/ /g<CR>:s/)//g<CR>:nohl<CR>
 
 colorscheme molokai
 
+" Darken listchars contents$
+hi NonText ctermfg=238 ctermbg=232 guifg=gray
 
 " Return to the last location viewed when reopening a file.
 augroup JumpCursorOnEdit
