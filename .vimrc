@@ -40,6 +40,7 @@ cmap w!! w !sudo tee > /dev/null %
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'nathanaelkane/vim-indent-guides'                     " mark indentation levels
 Plug 'junegunn/vim-easy-align'                             " align on delimiters
 Plug 'junegunn/rainbow_parentheses.vim'                    " parentheses marking
 Plug 'tpope/vim-fugitive'                                  " git integration
@@ -64,10 +65,18 @@ call plug#end()
 
 """""""""""""""""""""""
 
+" vim-indent-guides Configuration
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size  = 1
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=53
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=52
+
+au VimEnter * IndentGuidesEnable
+
 " EasyAlign Configuration
 vmap <Enter> <Plug>(EasyAlign)
 vmap <Leader>a <Plug>(EasyAlign)
-
 
 " NERD Tree Configuration
 
@@ -86,8 +95,6 @@ nmap <C-P> :s/(/ /g<CR>:s/)//g<CR>:nohl<CR>
 
 colorscheme molokai
 
-" Darken listchars contents$
-hi NonText ctermfg=238 ctermbg=232 guifg=gray
 
 " Return to the last location viewed when reopening a file.
 augroup JumpCursorOnEdit
