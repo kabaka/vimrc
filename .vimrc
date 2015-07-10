@@ -52,6 +52,7 @@ Plug 'sukima/xmledit'                                      " XML/HTML/SGML editi
 Plug 'evanmiller/nginx-vim-syntax'                         " nginx config files
 Plug 'pangloss/vim-javascript'                             " javascript indentation/highlighting
 Plug 'noprompt/vim-yardoc'                                 " syntax highlighting within comments
+Plug 'shepherdwind/vim-velocity'                           " syntax highlighting for velocity
 Plug 'hallison/vim-ruby-sinatra'                           " sinatra syntax highlighting
 Plug 'chrisbra/Colorizer'                                  " highlight colors within text
 Plug 'chrisbra/csv.vim'                                    " view CSV files as tables
@@ -86,6 +87,8 @@ vmap <Leader>a <Plug>(EasyAlign)
 "" Close NERDTree if everything else is closed
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+" Velocity - add special extension for AWS API Gateway
+au BufNewFile,BufRead *.json.vlt set ft=velocity
 
 " Rainbow Parentheses Configuration
 au VimEnter * RainbowParentheses
