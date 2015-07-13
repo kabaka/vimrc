@@ -88,7 +88,7 @@ vmap <Leader>a <Plug>(EasyAlign)
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Velocity - add special extension for AWS API Gateway
-au BufNewFile,BufRead *.json.vlt set ft=velocity
+au BufNewFile,BufRead *.json.vtl set ft=velocity
 
 " Rainbow Parentheses Configuration
 au VimEnter * RainbowParentheses
