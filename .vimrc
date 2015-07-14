@@ -51,6 +51,7 @@ Plug 'tomasr/molokai'                                      " color theme
 Plug 'sukima/xmledit'                                      " XML/HTML/SGML editing
 Plug 'evanmiller/nginx-vim-syntax'                         " nginx config files
 Plug 'pangloss/vim-javascript'                             " javascript indentation/highlighting
+Plug 'mxw/vim-jsx'                                         " react jsx highlighting
 Plug 'noprompt/vim-yardoc'                                 " syntax highlighting within comments
 Plug 'shepherdwind/vim-velocity'                           " syntax highlighting for velocity
 Plug 'hallison/vim-ruby-sinatra'                           " sinatra syntax highlighting
