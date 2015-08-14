@@ -99,9 +99,9 @@ nmap <C-P> :s/(/ /g<CR>:s/)//g<CR>:nohl<CR>
 
 colorscheme molokai
 
-" Darken listchars contents$
-hi NonText ctermfg=238 ctermbg=232 guifg=gray
-
+" Darken listchars, remove background overrides
+hi NonText ctermfg=238 ctermbg=none guifg=gray
+hi Normal              ctermbg=none
 " Return to the last location viewed when reopening a file.
 augroup JumpCursorOnEdit
  au!
