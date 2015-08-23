@@ -40,32 +40,39 @@ cmap w!! w !sudo tee > /dev/null %
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'nathanaelkane/vim-indent-guides'                     " mark indentation levels
-Plug 'junegunn/vim-easy-align'                             " align on delimiters
-Plug 'junegunn/rainbow_parentheses.vim'                    " parentheses marking
-Plug 'tpope/vim-abolish'                                   " text transformations and things
-Plug 'tpope/vim-fugitive'                                  " git integration
-Plug 'tpope/vim-endwise'                                   " add `end` in Ruby
-Plug 'vim-ruby/vim-ruby'                                   " complete Ruby support
-Plug 'tomasr/molokai'                                      " color theme
-Plug 'sukima/xmledit'                                      " XML/HTML/SGML editing
-Plug 'evanmiller/nginx-vim-syntax'                         " nginx config files
-Plug 'pangloss/vim-javascript'                             " javascript indentation/highlighting
-Plug 'mxw/vim-jsx'                                         " react jsx highlighting
-Plug 'noprompt/vim-yardoc'                                 " syntax highlighting within comments
-Plug 'shepherdwind/vim-velocity'                           " syntax highlighting for velocity
-Plug 'hallison/vim-ruby-sinatra'                           " sinatra syntax highlighting
-Plug 'chrisbra/Colorizer'                                  " highlight colors within text
-Plug 'chrisbra/csv.vim'                                    " view CSV files as tables
-Plug 'scrooloose/nerdcommenter'                            " commenting
-Plug 'scrooloose/nerdtree'                                 " file navigation
-Plug 'scrooloose/syntastic'                                " syntax checking
-Plug 'AndrewRadev/splitjoin.vim'                           " switch between single-line and multi-line blocks
-Plug 'michaeljsmith/vim-indent-object'                     " text objects based on indentation level
+Plug 'terryma/vim-multiple-cursors'     " edit many places at once
+Plug 'bling/vim-airline'                " better status line
+Plug 'nathanaelkane/vim-indent-guides'  " mark indentation levels
+Plug 'junegunn/vim-easy-align'          " align on delimiters
+Plug 'junegunn/rainbow_parentheses.vim' " parentheses marking
+Plug 'tpope/vim-abolish'                " text transformations and things
+Plug 'tpope/vim-fugitive'               " git integration
+Plug 'tpope/vim-endwise'                " add `end` in Ruby
+Plug 'vim-ruby/vim-ruby'                " complete Ruby support
+Plug 'tomasr/molokai'                   " color theme
+Plug 'sukima/xmledit'                   " XML/HTML/SGML editing
+Plug 'evanmiller/nginx-vim-syntax'      " nginx config files
+Plug 'pangloss/vim-javascript'          " javascript indentation/highlighting
+Plug 'mxw/vim-jsx'                      " react jsx highlighting
+Plug 'noprompt/vim-yardoc'              " syntax highlighting within comments
+Plug 'shepherdwind/vim-velocity'        " syntax highlighting for velocity
+Plug 'hallison/vim-ruby-sinatra'        " sinatra syntax highlighting
+Plug 'chrisbra/Colorizer'               " highlight colors within text
+Plug 'chrisbra/csv.vim'                 " view CSV files as tables
+Plug 'scrooloose/nerdcommenter'         " commenting
+Plug 'scrooloose/nerdtree'              " file navigation
+Plug 'scrooloose/syntastic'             " syntax checking
+Plug 'AndrewRadev/splitjoin.vim'        " switch between single-line and multi-line blocks
+Plug 'michaeljsmith/vim-indent-object'  " text objects based on indentation level
 
 call plug#end()
 
 """""""""""""""""""""""
+
+
+" vim-airline Configuration
+set laststatus=2
+"let g:airline_powerline_fonts = 1
 
 " vim-indent-guides Configuration
 let g:indent_guides_start_level = 2
@@ -79,6 +86,9 @@ au VimEnter * IndentGuidesEnable
 " EasyAlign Configuration
 vmap <Enter> <Plug>(EasyAlign)
 vmap <Leader>a <Plug>(EasyAlign)
+
+" syntastic Configuration
+let g:syntastic_javascript_checkers = ['jsxhint']
 
 " NERD Tree Configuration
 
