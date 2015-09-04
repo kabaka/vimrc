@@ -33,6 +33,9 @@ nnoremap <silent> <F3> :set spell spelllang=en_us<CR>
 nnoremap <silent> <F4> :set spell&<CR>
 "asetlocal spell spelllang=en_us
 
+nnoremap <silent> \ :bnext<CR>
+nnoremap <silent>  :bprev<CR>
+
 " Save files with sudo. (nabbed from https://stackoverflow.com/a/7078429)
 cmap w!! w !sudo tee > /dev/null %
 
