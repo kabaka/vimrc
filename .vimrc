@@ -45,6 +45,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'terryma/vim-multiple-cursors'     " edit many places at once
 Plug 'bling/vim-airline'                " better status line
+Plug 'kien/ctrlp.vim'                   " fuzzy file finding
 Plug 'nathanaelkane/vim-indent-guides'  " mark indentation levels
 Plug 'junegunn/vim-easy-align'          " align on delimiters
 Plug 'junegunn/rainbow_parentheses.vim' " parentheses marking
@@ -76,6 +77,14 @@ call plug#end()
 " vim-airline Configuration
 set laststatus=2
 "let g:airline_powerline_fonts = 1
+
+" ctrl-p Configuration
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)|node_modules|bower_components$',
+  \ 'file': '\v\.(exe|so|dll|o)$',
+  \ }
 
 " vim-indent-guides Configuration
 let g:indent_guides_start_level = 2
