@@ -45,6 +45,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'terryma/vim-multiple-cursors'     " edit many places at once
 Plug 'bling/vim-airline'                " better status line
+Plug 'edkolev/tmuxline.vim'             " generate airline config for tmux
 Plug 'kien/ctrlp.vim'                   " fuzzy file finding
 Plug 'nathanaelkane/vim-indent-guides'  " mark indentation levels
 Plug 'junegunn/vim-easy-align'          " align on delimiters
