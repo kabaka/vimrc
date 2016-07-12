@@ -14,6 +14,11 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 
+" http://vim.wikia.com/wiki/Backspace_and_delete_problems
+" Had to add this after upgrading work vim to 7.4; backspace would not go
+" beyond where insert mode started (argh).
+set backspace=indent,eol,start
+
 set nocompatible
 set omnifunc=syntaxcomplete#Complete
 
@@ -45,7 +50,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'terryma/vim-multiple-cursors'     " edit many places at once
 Plug 'bling/vim-airline'                " better status line
-Plug 'edkolev/tmuxline.vim'             " generate airline config for tmux
+"Plug 'edkolev/tmuxline.vim'             " generate airline config for tmux
 Plug 'kien/ctrlp.vim'                   " fuzzy file finding
 Plug 'nathanaelkane/vim-indent-guides'  " mark indentation levels
 Plug 'junegunn/vim-easy-align'          " align on delimiters
@@ -56,19 +61,26 @@ Plug 'tpope/vim-endwise'                " add `end` in Ruby
 Plug 'vim-ruby/vim-ruby'                " complete Ruby support
 Plug 'tomasr/molokai'                   " color theme
 Plug 'sukima/xmledit'                   " XML/HTML/SGML editing
+Plug 'elzr/vim-json'                    " better JSON syntax highlighting
 Plug 'evanmiller/nginx-vim-syntax'      " nginx config files
 Plug 'pangloss/vim-javascript'          " javascript indentation/highlighting
 Plug 'mxw/vim-jsx'                      " react jsx highlighting
 Plug 'noprompt/vim-yardoc'              " syntax highlighting within comments
 Plug 'shepherdwind/vim-velocity'        " syntax highlighting for velocity
+Plug 'saltstack/salt-vim'               " syntax highlighting for Salt
 Plug 'hallison/vim-ruby-sinatra'        " sinatra syntax highlighting
 Plug 'chrisbra/Colorizer'               " highlight colors within text
 Plug 'chrisbra/csv.vim'                 " view CSV files as tables
+Plug 'derekwyatt/vim-scala'             " syntax highlighting for Scala
 Plug 'scrooloose/nerdcommenter'         " commenting
 Plug 'scrooloose/nerdtree'              " file navigation
 Plug 'scrooloose/syntastic'             " syntax checking
 Plug 'AndrewRadev/splitjoin.vim'        " switch between single-line and multi-line blocks
 Plug 'michaeljsmith/vim-indent-object'  " text objects based on indentation level
+Plug 'kana/vim-fakeclip'                " clipboard access for vim without +clipboard
+Plug 'JulesWang/css.vim'                " necessary for Vim version < 7.4
+Plug 'cakebaker/scss-syntax.vim'        " syntax highlighting for SASS
+Plug 'mustache/vim-mustache-handlebars' " syntax highlighting for handlebars
 
 call plug#end()
 
@@ -116,6 +128,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " Velocity - add special extension for AWS API Gateway
 au BufNewFile,BufRead *.json.vtl set ft=velocity
 
+" Handlbars config
+let g:mustache_abbreviations = 1
+
 " Rainbow Parentheses Configuration
 au VimEnter * RainbowParentheses
 
@@ -123,6 +138,21 @@ au VimEnter * RainbowParentheses
 nmap <C-P> :s/(/ /g<CR>:s/)//g<CR>:nohl<CR>
 
 colorscheme molokai
+
+
+" Misc Helpers
+autocmd BufRead,BufNewFile ~/projects/inGraphs/common-templates/* set syntax=yaml
+autocmd BufRead,BufNewFile ~/projects/ingraphs-from-cli/* set syntax=yaml
+autocmd BufRead,BufNewFile */config/**/*.src set syntax=xml
+
+" Perform syntax highlighting from the start of the file every time. Hurts
+" performance but fixes incorrect highlighting before scrolling around.
+autocmd BufEnter * :syntax sync fromstart
+
+
+" Fix YAML syntax highlighting
+"autocmd FileType yaml execute
+"      \'syn match yamlBlockMappingKey /^\s*\zs.*\ze\s*:\%(\s\|$\)/'
 
 " Darken listchars, remove background overrides
 hi NonText ctermfg=238 ctermbg=none guifg=gray
