@@ -50,7 +50,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'terryma/vim-multiple-cursors'     " edit many places at once
 Plug 'bling/vim-airline'                " better status line
-"Plug 'edkolev/tmuxline.vim'             " generate airline config for tmux
+Plug 'edkolev/tmuxline.vim'             " generate airline config for tmux
+Plug 'vim-airline/vim-airline-themes'   " airline themes
 Plug 'kien/ctrlp.vim'                   " fuzzy file finding
 Plug 'nathanaelkane/vim-indent-guides'  " mark indentation levels
 Plug 'junegunn/vim-easy-align'          " align on delimiters
@@ -91,6 +92,7 @@ call plug#end()
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+let g:airline_theme = 'molokai'
 set noshowmode
 
 " ctrl-p Configuration
