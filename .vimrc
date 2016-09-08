@@ -82,6 +82,7 @@ Plug 'kana/vim-fakeclip'                " clipboard access for vim without +clip
 Plug 'JulesWang/css.vim'                " necessary for Vim version < 7.4
 Plug 'cakebaker/scss-syntax.vim'        " syntax highlighting for SASS
 Plug 'mustache/vim-mustache-handlebars' " syntax highlighting for handlebars
+Plug 'jceb/vim-orgmode'                 " for project/task management
 
 call plug#end()
 
