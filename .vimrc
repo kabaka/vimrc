@@ -33,6 +33,8 @@ let Tlist_Exit_OnlyWindow     = 1
 set listchars = listchars=tab:>-,trail:.,extends:>,precedes:<,eol:$
 set list
 
+set tags=tags/;
+
 nnoremap <silent> <F8> :TlistToggle<CR>
 nnoremap <silent> <F3> :set spell spelllang=en_us<CR>
 nnoremap <silent> <F4> :set spell&<CR>
@@ -60,10 +62,12 @@ Plug 'tpope/vim-abolish'                " text transformations and things
 Plug 'tpope/vim-fugitive'               " git integration
 Plug 'tpope/vim-endwise'                " add `end` in Ruby
 Plug 'vim-ruby/vim-ruby'                " complete Ruby support
+Plug 'fatih/vim-go'                     " golang support
 Plug 'tomasr/molokai'                   " color theme
 Plug 'sukima/xmledit'                   " XML/HTML/SGML editing
 Plug 'elzr/vim-json'                    " better JSON syntax highlighting
-Plug 'evanmiller/nginx-vim-syntax'      " nginx config files
+Plug 'chr4/nginx.vim'                   " nginx config files
+Plug 'chr4/sslsecure.vim'               " highlight insecure SSL/TLS options
 Plug 'pangloss/vim-javascript'          " javascript indentation/highlighting
 Plug 'mxw/vim-jsx'                      " react jsx highlighting
 Plug 'noprompt/vim-yardoc'              " syntax highlighting within comments
@@ -75,18 +79,27 @@ Plug 'chrisbra/csv.vim'                 " view CSV files as tables
 Plug 'derekwyatt/vim-scala'             " syntax highlighting for Scala
 Plug 'scrooloose/nerdcommenter'         " commenting
 Plug 'scrooloose/nerdtree'              " file navigation
-Plug 'scrooloose/syntastic'             " syntax checking
+"Plug 'scrooloose/syntastic'             " syntax checking
 Plug 'AndrewRadev/splitjoin.vim'        " switch between single-line and multi-line blocks
 Plug 'michaeljsmith/vim-indent-object'  " text objects based on indentation level
 Plug 'kana/vim-fakeclip'                " clipboard access for vim without +clipboard
 Plug 'JulesWang/css.vim'                " necessary for Vim version < 7.4
 Plug 'cakebaker/scss-syntax.vim'        " syntax highlighting for SASS
 Plug 'mustache/vim-mustache-handlebars' " syntax highlighting for handlebars
+Plug 'tpope/vim-speeddating'            " advanced date formatting capabilities
 Plug 'jceb/vim-orgmode'                 " for project/task management
+Plug 'w0rp/ale'                         " async linter for basically everything
+" Plug 'RRethy/vim-illuminate'            " highlight word under the cursor
 
 call plug#end()
 
 """""""""""""""""""""""
+
+
+" vim-go wants to be on a very recent version of vim, which isn't available
+" everywhere I run vim. This suppresses the super annoying warning that is
+" otherwise generated during startup.
+let g:go_version_warning = 0
 
 
 " vim-airline Configuration
@@ -137,6 +150,9 @@ let g:mustache_abbreviations = 1
 " Rainbow Parentheses Configuration
 au VimEnter * RainbowParentheses
 
+" vim-flake8 Configuration
+let g:flake8_show_in_gutter=1
+
 " Remove parentheses on ctrl-P
 nmap <C-P> :s/(/ /g<CR>:s/)//g<CR>:nohl<CR>
 
@@ -144,13 +160,27 @@ colorscheme molokai
 
 
 " Misc Helpers
+autocmd BufRead,BufNewFile *.md set syntax=markdown
 autocmd BufRead,BufNewFile ~/projects/inGraphs/common-templates/* set syntax=yaml
 autocmd BufRead,BufNewFile ~/projects/ingraphs-from-cli/* set syntax=yaml
 autocmd BufRead,BufNewFile */config/**/*.src set syntax=xml
+autocmd BufRead,BufNewFile ~/projects/**/*.go set expandtab!
+autocmd BufRead,BufNewFile ~/projects/**/*.c set expandtab!
+autocmd BufRead,BufNewFile ~/projects/**/*.h set expandtab!
 
 " Perform syntax highlighting from the start of the file every time. Hurts
 " performance but fixes incorrect highlighting before scrolling around.
 autocmd BufEnter * :syntax sync fromstart
+
+" tell vim to keep a backup file
+set backup
+
+" tell vim where to put its backup files
+set backupdir=~/.vim-runtime/backup/
+
+" tell vim where to put swap files
+set dir=~/.vim-runtime/swap/
+
 
 
 " Fix YAML syntax highlighting
@@ -185,3 +215,51 @@ augroup JumpCursorOnEdit
  \ endif
 augroup END
 
+
+" http://vim.wikia.com/wiki/Move_to_next/previous_line_with_same_indentation
+" Jump to the next or previous line that has the same level or a lower
+" level of indentation than the current line.
+"
+" exclusive (bool): true: Motion is exclusive
+" false: Motion is inclusive
+" fwd (bool): true: Go to next line
+" false: Go to previous line
+" lowerlevel (bool): true: Go to line with lower indentation level
+" false: Go to line with the same indentation level
+" skipblanks (bool): true: Skip blank lines
+" false: Don't skip blank lines
+function! NextIndent(exclusive, fwd, lowerlevel, skipblanks)
+  let line = line('.')
+  let column = col('.')
+  let lastline = line('$')
+  let indent = indent(line)
+  let stepvalue = a:fwd ? 1 : -1
+  while (line > 0 && line <= lastline)
+    let line = line + stepvalue
+    if ( ! a:lowerlevel && indent(line) == indent ||
+          \ a:lowerlevel && indent(line) < indent)
+      if (! a:skipblanks || strlen(getline(line)) > 0)
+        if (a:exclusive)
+          let line = line - stepvalue
+        endif
+        exe line
+        exe "normal " column . "|"
+        return
+      endif
+    endif
+  endwhile
+endfunction
+
+" Moving back and forth between lines of same or lower indentation.
+nnoremap <silent> [l :call NextIndent(0, 0, 0, 1)<CR>
+nnoremap <silent> ]l :call NextIndent(0, 1, 0, 1)<CR>
+nnoremap <silent> [L :call NextIndent(0, 0, 1, 1)<CR>
+nnoremap <silent> ]L :call NextIndent(0, 1, 1, 1)<CR>
+vnoremap <silent> [l <Esc>:call NextIndent(0, 0, 0, 1)<CR>m'gv''
+vnoremap <silent> ]l <Esc>:call NextIndent(0, 1, 0, 1)<CR>m'gv''
+vnoremap <silent> [L <Esc>:call NextIndent(0, 0, 1, 1)<CR>m'gv''
+vnoremap <silent> ]L <Esc>:call NextIndent(0, 1, 1, 1)<CR>m'gv''
+onoremap <silent> [l :call NextIndent(0, 0, 0, 1)<CR>
+onoremap <silent> ]l :call NextIndent(0, 1, 0, 1)<CR>
+onoremap <silent> [L :call NextIndent(1, 0, 1, 1)<CR>
+onoremap <silent> ]L :call NextIndent(1, 1, 1, 1)<CR>
